@@ -9,15 +9,23 @@ use App\Models\User;
 
 use App\Models\Food;
 
+use App\Models\Foodchef;
+
 class HomeController extends Controller
 {
     public function index()
     {
 
-        $data=Food::all();
+        $data=food::all();
+
+        $data2=foodchef::all();
+       
+
+        
+        
 
      
-        return view("home", compact("data"));
+        return view("home", compact("data", "data2"));
     }
 
 
@@ -26,6 +34,7 @@ class HomeController extends Controller
     {
 
         $data=Food::all();
+        $data2=Foodchef::all();
 
         $usertype = Auth::user()->usertype;
 
@@ -36,7 +45,7 @@ class HomeController extends Controller
 
         else
         {
-            return view('home', compact("data"));
+            return view('home', compact("data", "data2"));
         }
     }
 }
