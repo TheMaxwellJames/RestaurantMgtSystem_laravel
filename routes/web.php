@@ -48,6 +48,8 @@ Route::get('/deletechef/{id}', [AdminController::class, 'deletechef']);
 
 Route::post('/updatefoodchef/{id}', [AdminController::class, 'updatefoodchef']);
 
+Route::post('/addcart/{id}', [HomeController::class, 'addcart']);
+
 
 
 Route::middleware([
