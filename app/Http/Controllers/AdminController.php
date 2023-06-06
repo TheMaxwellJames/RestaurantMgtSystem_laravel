@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Food;
 use App\Models\Reservation;
 use App\Models\Foodchef;
+use App\Models\Order;
 
 class AdminController extends Controller
 {
@@ -269,6 +270,19 @@ public function deletechef($id)
     return redirect()->back();
 
 
+}
+
+
+
+
+public function orders()
+{
+
+    $data=order::all();
+
+
+
+    return view('admin.orders', compact('data'));
 }
 
 
