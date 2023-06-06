@@ -42,16 +42,44 @@
             </div>
 
 
-
-
-
-
-
-
-
-
-
             </form>
+
+            <table >
+
+
+<tr>
+    <th style="padding:30px;">Chef Name</th>
+    <th style="padding:30px;">Specialty</th>
+    <th style="padding:30px;">Image</th>
+    <th style="padding:30px;">Update</th>
+    <th style="padding:30px;">Delete</th>
+</tr>
+
+
+
+@foreach($data as $data)
+<tr align="center">
+    <td>{{$data->name}}</td>
+    <td>{{$data->specialty}}</td>
+    <td><img height="100px" width="100px" src="/chefimage/{{$data->image}}" alt=""></td>
+    <td><a href="{{url('/updatechef',$data->id)}}" class="btn btn-primary">Update</a></td>
+    <td><a href="{{url('/deletechef',$data->id)}}" class="btn btn-danger" onclick="return confirm('sure to delete?')">Delete</a></td>
+</tr>
+
+@endforeach
+
+</table>
+
+
+
+
+
+
+     
+
+
+
+          
 
 
 
