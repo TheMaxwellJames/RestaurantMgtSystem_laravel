@@ -290,6 +290,39 @@ public function orders()
 
 
 
+public function search(Request $request)
+{
+    $search = $request->search;
+
+    $data = order::where('name', 'LIKE', '%' . $search . '%')->orWhere('foodname', 'LIKE', '%' . $search . '%')
+    ->get();
+
+    return view('admin.orders', compact('data'));
+}
+
+
+
+
+
+// public function search(Request $request)
+// {
+
+//     $search=$request->search;
+
+
+//     $data=order::where('name', 'Like', '%' .$search. '%')->get();
+
+
+
+//     return view('admin.orders', compact('data'));
+
+// }
+
+
+
+
+
+
 
 
 
