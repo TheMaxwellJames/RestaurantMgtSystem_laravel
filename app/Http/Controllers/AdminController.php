@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Food;
 use App\Models\Reservation;
@@ -162,10 +163,26 @@ class AdminController extends Controller
 
     public function viewreservation()
     {
+
+
+        if(Auth::id())
+        {
+
+       
+
         $data=reservation::all();
 
 
         return view('admin.adminreservation', compact('data'));
+
+    }
+
+    else
+    {
+        return redirect('login');
+    }
+
+
     }
 
 
@@ -174,10 +191,20 @@ class AdminController extends Controller
     public function viewchef()
 {
 
-    $data = Foodchef::all();
+    if(Auth::id())
+    {
+        $data = Foodchef::all();
 
 
-    return view('admin.adminchef', compact('data'));
+        return view('admin.adminchef', compact('data'));
+    }
+
+    else
+    {
+        return redirect('login');
+    }
+
+ 
 }
 
 
@@ -259,6 +286,9 @@ public function updatefoodchef(Request $request, $id)
 public function deletechef($id)
 {
 
+    if(Auth::id())
+    {
+      
 
 
     $data=foodchef::find($id);
@@ -269,6 +299,13 @@ public function deletechef($id)
 
     return redirect()->back();
 
+}
+
+else
+{
+    return redirect('login');
+}
+
 
 }
 
@@ -278,11 +315,19 @@ public function deletechef($id)
 public function orders()
 {
 
-    $data=order::all();
+    if(Auth::id())
+    {
+        $data=order::all();
 
+        return view('admin.orders', compact('data'));
+    }
 
+    else
+    {
+        return redirect('login');
+    }
 
-    return view('admin.orders', compact('data'));
+  
 }
 
 
@@ -303,20 +348,6 @@ public function search(Request $request)
 
 
 
-
-// public function search(Request $request)
-// {
-
-//     $search=$request->search;
-
-
-//     $data=order::where('name', 'Like', '%' .$search. '%')->get();
-
-
-
-//     return view('admin.orders', compact('data'));
-
-// }
 
 
 
